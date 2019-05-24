@@ -18,7 +18,11 @@ import java.util.Map;
 import java.util.SimpleTimeZone;
 /*
 * 总结：listView与ContextMenu
-*
+*ContextMenu的使用，
+* 1）创建：CreateContextMenu，1.用MenuInflate（菜单），2.listView的布局由adapter来建立，得到item项，最根本的也是在adapter内获取，
+* 在某个位置上长按，给了menu一个信息，即menuInfo，它得到了某个位置的点击，AdapterView.AdapterContextMenuInfo把信息转换为item，将值赋给我们定义的一个值，
+* 创建一个ContextMenu的选项select，得到ContextMenu项，listremove掉adapterView.Adapter的值
+* 静态则name.方法，否则则实例化，或interface和implement接口
 *
 *
 *
@@ -53,8 +57,9 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
         super.onCreateContextMenu(menu, v, menuInfo);
-        //创建适配器上下文信息，得到这个类的方法info.position，即为得到长按项，让其等于一个int类型的值，这里为item_id
+        //创建适配器上下文信息，得到这个类的方法info.position，即为得到长按项，让其等于一个int类型的值，这里为item_id,（让menu得到长按得值），
         AdapterView.AdapterContextMenuInfo info= (AdapterView.AdapterContextMenuInfo) menuInfo;
+
         item_id=info.position;
         //菜单加载器，来加载菜单
         MenuInflater menuInflater=new MenuInflater(MainActivity.this);
